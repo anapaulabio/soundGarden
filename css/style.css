@@ -48,3 +48,51 @@ footer nav ul{
 footer nav ul li  {
     padding: 10px;
 }
+
+.modal-container {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.6);
+    position: fixed;
+    top :0px;
+    left: 0px;
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-container.mostrar {
+    display: flex;
+}
+
+.modal {
+    background: white;
+    width: 40%;
+    min-width: 300px;
+    padding: 40px;
+    border: 5px solid #C2185B;
+    border-radius: 10px;
+} 
+
+.modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+@keyframes modal {
+    from{
+        opacity: 0;
+        transform: translate3d(0, -60px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+.mostrar .modal {
+    animation: modal .3s;
+}
+
+

@@ -1,23 +1,45 @@
+const SOUND_URL = 'https://xp41-soundgarden-api.herokuapp.com/events';
 
-const form = (eventNome) => {
-    document.getElementById("nome").value = eventNome.name;
-    document.getElementById("atracoes").value = eventNome.attractions.split(",");
-    document.getElementById("descricao").value = eventNome.descripton;
-    document.getElementById("data").value = eventNome.schedulet;
-    document.getElementById("lotacao").value = eventNome.number_tickets;
-    document.getElementById("banner").value = eventNome.poster;
-    }
+const formCadastroEvento = document.querySelector('#cadastro-evento');
 
-const soundEventos = async() => {
-    const inputId = document.querySelector('#?').value;
-    const soundURL = "https://xp41-soundgarden-api.herokuapp.com";
-    const data = await fetch(`${soundURL}/events/${inputId}}`);
-    
-    const eventNome = await data.json();
+formCadastroEvento.addEventListener('submit', async (event) => {
 
-    form(eventNome)
-};
+    event.preventDefault(); //Evitar que a página seja recarregada
 
-document.getElementById
+    const inputNome = document.getElementById("nome");
+    const inputAtracoes = document.getElementById("atracoes");
+    const inputDescricao = document.getElementById("descricao");
+    const inputData = document.getElementById("data");
+    const inputLotacao = document.getElementById("lotacao");
+    const inputBanner = document.getElementById("banner");
 
+    //alert(inputNome.value);
 
+    const fullDateTime = new Date(inputData.value);
+
+    const novoEventoOBJ = {
+            "name": inputNome.value,
+            "poster": inputBanner.value,
+            "attractions": inputAtracoes.value.split(","),
+            "description": inputDescricao.value,
+            "scheduled": fullDateTime.toISOString(),
+            "number_tickets": inputLotacao.value
+    };
+    // Convertendo OBJ para JSON
+    const novoEventoJSON = JSON.stringify(novoEventoOBJ);
+    // Conexão com a API para cadastrar novo evento
+    // Salvando resposta na const
+    const resposta = await fetch(SOUND_URL, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: novoEventoJSON
+    }).then((response) => {
+        return response.json()
+    }).then((responseOBJ) => {
+        console.log(responseOBJ);
+    });
+
+});
