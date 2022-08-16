@@ -18,7 +18,7 @@ const exibirEventos = async () => {
             <a href="editar-evento.html?${event._id}" class="btn btn-secondary">editar</a>
             <a href="editar-evento.html?${event._id}" class="btn btn-danger">excluir</a>
         </td>
-    </tr>
+        </tr>
         `
 });
    

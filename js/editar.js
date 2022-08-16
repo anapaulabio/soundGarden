@@ -1,45 +1,48 @@
-const url = 'https://xp41-soundgarden-api.herokuapp.com/events'
+const SOUND_URL = 'https://xp41-soundgarden-api.herokuapp.com/events';
+  
 
-const inputNome = document.getElementById("nome");
-const inputAtracoes = document.getElementById("atracoes");
-const inputDescricao = document.getElementById("descricao");
-const inputData = document.getElementById("data");
-const inputLotacao = document.getElementById("lotacao");
-const inputBanner = document.getElementById("banner");
 const updateEvento = document.querySelector('#editar-evento');
-const mostrarEvento = document.querySelector('#editar-evento')
-
-        
 
 updateEvento.addEventListener('submit', async (event) => {
 
-    event.preventDefault(); 
+    event.preventDefault(); //Evitar que a página seja recarregada
+
+    const inputNome = document.getElementById("nome");
+    const inputAtracoes = document.getElementById("atracoes");
+    const inputDescricao = document.getElementById("descricao");
+    const inputData = document.getElementById("data");
+    const inputLotacao = document.getElementById("lotacao");
+    const inputBanner = document.getElementById("banner");
+
+    //alert(inputNome.value);
 
     const fullDateTime = new Date(inputData.value);
 
-    const editEvento = {
-        "name": inputNome.value,
-        "poster": inputBanner.value,
-        "attractions": inputAtracoes.value.split(","),
-        "description": inputDescricao.value,
-        "scheduled": fullDateTime.toISOString(),
-        "number_tickets": inputLotacao.value
+    const novoEventoOBJ = {
+            "name": inputNome.value,
+            "poster": inputBanner.value,
+            "attractions": inputAtracoes.value.split(","),
+            "description": inputDescricao.value,
+            "scheduled": fullDateTime.toISOString(),
+            "number_tickets": inputLotacao.value
     };
-
-    const resposta = await fetch(url, {
+    // Convertendo OBJ para JSON
+    const novoEventoJSON = JSON.stringify(novoEventoOBJ);
+    // Conexão com a API para cadastrar novo evento
+    // Salvando resposta na const
+    const resposta = await fetch(SOUND_URL, {
         method: "PUT",
         mode: "cors",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(editEvento) 
+        body: novoEventoJSON
+    }).then((response) => {
+        return response.json()
+    }).then((responseOBJ) => {
+        console.log(responseOBJ);
     });
-    const data = await resposta.json();
-
-
-    if(data.status == 200) {
-    alert("Evento editado com sucesso!")
-    }
-
+    
+    alert("evento cadastrado com sucesso")
 });
 
