@@ -10,7 +10,7 @@ const iniciaModal = (modalID) => {
 
 const botao = document.querySelectorAll('.btn')
 for (let i = 0; i < botao.length; i++) {
-    botao[i].addEventListener('click', () => iniciaModal('.reserva-modal'))
+    botao[i].onclick = () => iniciaModal('.reserva-modal')
 }
 
 // função para cadastro de reservas
@@ -69,7 +69,7 @@ const exibirEventos = async () => {
         <h2>${event.name} - ${event.scheduled}</h2>
         <h4>${event.attractions}</h4>
         <p>${event.description}</p>
-        <a href="#" class="btn btn-primary">reservar ingresso</a>
+        <a href="#" onclick="iniciaModal('.reserva-modal')" class="btn btn-primary">reservar ingresso</a>
         </article>
         `
 });
