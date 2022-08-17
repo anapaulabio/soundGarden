@@ -8,7 +8,7 @@ const iniciaModal = (modalID) => {
 }
 
 
-const botao = document.querySelectorAll('.btn')
+const botao = document.querySelectorAll('.reserv')
 for (let i = 0; i < botao.length; i++) {
     botao[i].onclick = () => iniciaModal('.reserva-modal')
 }

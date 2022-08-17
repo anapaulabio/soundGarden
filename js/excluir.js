@@ -44,7 +44,7 @@ deleteEvento.addEventListener('submit', async (event) => {
             "Content-Type": "application/json"
         },
     }).then(response => response)
-    .then(result => { window.location.href = './admin.html'})
+    .then(result => { window.location.href = 'admin.html'})
     .catch(error => alert(`O evento ${nome} não foi excluido`))
     
 

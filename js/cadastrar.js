@@ -5,7 +5,7 @@ const formCadastroEvento = document.querySelector('#cadastro-evento');
 
 formCadastroEvento.addEventListener('submit', async (event) => {
 
-    event.preventDefault(); //Evitar que a página seja recarregada
+    event.preventDefault(); 
 
     const inputNome = document.getElementById("nome");
     const inputAtracoes = document.getElementById("atracoes");
@@ -13,8 +13,6 @@ formCadastroEvento.addEventListener('submit', async (event) => {
     const inputData = document.getElementById("data");
     const inputLotacao = document.getElementById("lotacao");
     const inputBanner = document.getElementById("banner");
-
-    //alert(inputNome.value);
 
     const fullDateTime = new Date(inputData.value);
 
@@ -26,10 +24,9 @@ formCadastroEvento.addEventListener('submit', async (event) => {
             "scheduled": fullDateTime.toISOString(),
             "number_tickets": inputLotacao.value
     };
-    // Convertendo OBJ para JSON
+   
     const novoEventoJSON = JSON.stringify(novoEventoOBJ);
-    // Conexão com a API para cadastrar novo evento
-    // Salvando resposta na const
+
     const resposta = await fetch(SOUND_URL, {
         method: "POST",
         mode: "cors",

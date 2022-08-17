@@ -63,9 +63,7 @@ updateEvento.addEventListener('submit', async (event) => {
         body: novoEventoJSON
     }).then((response) => {
         return response.json()
-    }).then((responseOBJ) => {
-        console.log(responseOBJ);
-    });
+    }).then(result => { window.location.href = 'admin.html'})
     
     alert("Evento atualizado com sucesso!")
 });
