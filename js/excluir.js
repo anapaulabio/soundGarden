@@ -8,6 +8,28 @@ const inputLotacao = document.getElementById("lotacao");
 const inputBanner = document.getElementById("banner");
 const deleteEvento = document.querySelector('#deletar-evento');
 
+const findID = () => {
+
+    const url = new URL(window.location.href);
+    const id = url.searchParams.get('id')
+
+    return id;
+}
+
+const detailsEvent = async () => {
+    const dadosEvent = await fetch('https://xp41-soundgarden-api.herokuapp.com/events/' + findID())
+    const resposta = await dadosEvent.json()
+
+    inputNome.value = resposta.name
+    inputBanner.value = resposta.poster
+    inputAtracoes.value = resposta.attractions
+    inputDescricao.value = resposta.description
+    inputData.value = resposta.scheduled
+    inputLotacao.value = resposta.number_tickets
+
+};
+
+detailsEvent()
 
 
 
@@ -15,31 +37,19 @@ deleteEvento.addEventListener('submit', async (event) => {
 
     event.preventDefault(); 
 
-    const fullDateTime = new Date(inputData.value);
-
-    const getEvento = {
-        "name": inputNome.value,
-        "poster": inputBanner.value,
-        "attractions": inputAtracoes.value.split(","),
-        "description": inputDescricao.value,
-        "scheduled": fullDateTime.toISOString(),
-        "number_tickets": inputLotacao.value
-    };
-
-    const resposta = await fetch(`${url}/${id}`, {
+    const resposta = await fetch('https://xp41-soundgarden-api.herokuapp.com/events/' + findID(), {
         method: "DELETE",
         mode: "cors",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(getEvento) 
-    });
-    const data = await resposta.json();
+    }).then(response => response)
+    .then(result => { window.location.href = './admin.html'})
+    .catch(error => alert(`O evento ${nome} não foi excluido`))
+    
 
-
-    if(data.status == 201) {
     alert("Evento excluido com sucesso!")
-    }
+
 
 });
 
