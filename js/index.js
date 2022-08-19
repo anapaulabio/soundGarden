@@ -1,17 +1,20 @@
-const iniciaModal = (modalID) => {
-    const modal = document.querySelector(modalID)
-    modal.classList.add('mostrar')
+const modal = document.querySelector('.reserva-modal')
+const iniciaModal = async () => {
+   
+    modal.setAttribute('style', 'display: flex')
+    modal.setAttribute("evento_id", event.target.id)
+  
     modal.addEventListener('click', (e) => {
         if(e.target.id == 'fechar' || e.target.id == 'reserve')
-        modal.classList.remove('mostrar')
-    })
+        modal.setAttribute('style', 'display: none')
+    });
 }
+
 
 
 const botao = document.querySelectorAll('.reserv')
-for (let i = 0; i < botao.length; i++) {
-    botao[i].onclick = () => iniciaModal('.reserva-modal')
-}
+    botao.onclick = () => iniciaModal()
+
 
 // função para cadastro de reservas
 
@@ -29,7 +32,8 @@ cadReserva.addEventListener('submit', async (event) =>{
     const novaReservaOBJ = {
     "owner_name": inputNome.value,
     "owner_email": inputEmail.value,
-    "number_tickets": inputQuantidade.value
+    "number_tickets": inputQuantidade.value,
+    "event_id": modal.getAttribute("evento_id")
     }
 
     const novaReservaJSON = JSON.stringify(novaReservaOBJ);
@@ -69,7 +73,7 @@ const exibirEventos = async () => {
         <h2>${event.name} - ${event.scheduled}</h2>
         <h4>${event.attractions}</h4>
         <p>${event.description}</p>
-        <a href="#" onclick="iniciaModal('.reserva-modal')" class="btn btn-primary">reservar ingresso</a>
+        <a id="${event._id}" onclick="iniciaModal()" class="btn btn-primary">reservar ingresso</a>
         </article>
         `
 });

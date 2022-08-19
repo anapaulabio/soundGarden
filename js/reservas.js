@@ -1,7 +1,15 @@
 const url = 'https://xp41-soundgarden-api.herokuapp.com/bookings'
 
+const findID = () => {
+
+    const url = new URL(window.location.href);
+    const id = url.searchParams.get('id')
+
+    return id;
+}
+
 const exibirEventos = async () => {
-    const resposta = await fetch(url);
+    const resposta = await fetch( `${url}/event/${findID()}`);
     const data = await resposta.json();
 
     const card = document.querySelector('.table-2 tbody');

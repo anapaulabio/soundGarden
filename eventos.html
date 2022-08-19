@@ -126,14 +126,19 @@
             <button id="fechar">x</button>
             <h3>Reserve seu ingresso</h3>
             <form id="cadastro-reserva">
-                <input type="text" placeholder="nome" id="input-nome">
-                <input type="email" placeholder="email" id="input-email">
-                <input type="number" placeholder="quantidade" id="input-quantidade">
-                <button class="btn-primary" id="reserve">Reservar ingressos</button>
-            </form>
+            <label for="input-nome">Nome</label>
+            <input type="text" placeholder="nome" id="input-nome">
+            <label for="input-email">Email</label>
+            <input type="email" placeholder="email" id="input-email">
+            <label for="input-quantidade">Ingressos</label>
+            <input type="number" placeholder="quantidade" id="input-quantidade">
+            <input type="hidden" id="input-id">
+            <button class="btn-primary" id="reserve">Reservar ingressos</button>
+        </form>
         </div>
     </section>
     <script src="./js/eventos.js"></script>
+
 </body>
 
 </html>

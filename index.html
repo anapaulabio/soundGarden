@@ -13,7 +13,7 @@
 
 <body>
     <header class=" d-flex justify-content-center align-items-center">
-        <img src="img/Sound-logo (1).png" width="300" alt="">
+        <img src="./img/Sound-logo (1).png" width="300" alt="">
     </header>
     <main class="d-flex flex-column">
         <section class="d-flex justify-content-center"
@@ -29,14 +29,14 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <a href="https://www.knotfestbrasil.com/"><img style="border-radius: 30px;" src="/img/sli1.png" class="d-flex w-auto" alt="..." ></a>
+                        <a href="https://www.knotfestbrasil.com/"><img style="border-radius: 30px;" src="./img/sli1.png" class="d-flex w-auto" alt="..." ></a>
                     </div>
                     <div class="carousel-item">
-                        <a href="https://www.primaverasound.com/pt/sao-paulo"><img style="border-radius: 30px;" src="/img/sli2.png"
+                        <a href="https://www.primaverasound.com/pt/sao-paulo"><img style="border-radius: 30px;" src="./img/sli2.png"
                                 class="d-flex w-auto" alt="..."></a>
                     </div>
                     <div class="carousel-item">
-                        <a href="https://popload.com.br/"><img src="/img/sli3.png" style="border-radius: 30px;" class="d-flex w-auto"
+                        <a href="https://popload.com.br/"><img src="./img/sli3.png" style="border-radius: 30px;" class="d-flex w-auto"
                                 alt="..."></a>
                     </div>
                 </div>
@@ -145,9 +145,13 @@
             <button id="fechar">x</button>
             <h3>Reserve seu ingresso</h3>
             <form id="cadastro-reserva">
+                <label for="input-nome">Nome</label>
                 <input type="text" placeholder="nome" id="input-nome">
+                <label for="input-email">Email</label>
                 <input type="email" placeholder="email" id="input-email">
+                <label for="input-quantidade">Ingressos</label>
                 <input type="number" placeholder="quantidade" id="input-quantidade">
+                <input type="hidden" id="input-id">
                 <button class="btn-primary" id="reserve">Reservar ingressos</button>
             </form>
         </div>
