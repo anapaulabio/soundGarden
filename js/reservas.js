@@ -12,7 +12,7 @@ const exibirEventos = async () => {
     const resposta = await fetch( `${url}/event/${findID()}`);
     const data = await resposta.json();
 
-    const card = document.querySelector('.table-2 tbody');
+    const card = document.querySelector('tbody');
     let htmlEventos = ""
     data.forEach((event) => {
 
