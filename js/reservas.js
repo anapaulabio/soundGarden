@@ -19,12 +19,10 @@ const exibirEventos = async () => {
         htmlEventos += `
         <tr>
         <th scope="row">${data.indexOf(event)+1}</th>
+        <td>${event._id}</td>
         <td>${event.owner_name}</td>
         <td>${event.owner_email}</td>
         <td>${event.number_tickets}</td>
-        <td>
-            <a href="excluir-evento.html?id=${event._id}" class="btn btn-danger">excluir</a>
-        </td>
         </tr>
         `
 });

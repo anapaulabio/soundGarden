@@ -16,6 +16,17 @@ const iniciaModal = async () => {
 
 
 // função para listar os eventos cadstrados
+function convertData (data) {
+    let date = data.split(""); // cortar a data para adicionar o / nos lugares corretos
+    let novaData =
+      date.slice(8, 10).join("") +
+      "/" +
+      date.slice(5, 7).join("") +
+      "/" +
+      date.slice(0, 4).join("");
+
+    return novaData;
+  };
 
 const exibirEventos = async () => {
     const resposta = await fetch('https://xp41-soundgarden-api.herokuapp.com/events');
@@ -27,7 +38,7 @@ const exibirEventos = async () => {
         
         htmlEventos += `
         <article class="evento card p-5 m-3">
-        <h2>${event.name} - ${event.scheduled}</h2>
+        <h2>${event.name} - ${convertData(event.scheduled)}</h2>
         <h4>${event.attractions}</h4>
         <p>${event.description}</p>
         <a id="${event._id}" onclick="iniciaModal()" class="btn btn-primary">reservar ingresso</a>

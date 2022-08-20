@@ -1,5 +1,17 @@
 const url = 'https://xp41-soundgarden-api.herokuapp.com/events'
 
+function convertData (data) {
+    let date = data.split(""); // cortar a data para adicionar o / nos lugares corretos
+    let novaData =
+      date.slice(8, 10).join("") +
+      "/" +
+      date.slice(5, 7).join("") +
+      "/" +
+      date.slice(0, 4).join("");
+
+    return novaData;
+  };
+
 const exibirEventos = async () => {
     const resposta = await fetch(url);
     const data = await resposta.json();
@@ -11,7 +23,7 @@ const exibirEventos = async () => {
         htmlEventos += `
         <tr>
         <th scope="row">${data.indexOf(event)+1}</th>
-        <td>${event.scheduled}</td>
+        <td>${convertData(event.scheduled)}</td>
         <td>${event.name}</td>
         <td>${event.attractions}</td>
         <td>
